@@ -1,0 +1,51 @@
+.header-main {
+  position: relative;
+  margin: auto;
+  width: 1170px;
+  height: 70px;
+  top: 10px;
+  border-radius: 10px;
+}
+
+.header-left {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  margin-left: 125px;
+  width: 208px;
+  height: 64px;
+}
+
+.header-left-title {
+  display: inline-block;
+  padding-left: 5px;
+  width: 70px;
+
+  /* Main text ubuntu */
+  font-size: 18px;
+  line-height: 21px;
+  /* Azure */
+  color: #047ced;
+}
+
+.header-settings {
+  /* Azure */
+  border: 3px solid #047ced;
+  box-sizing: border-box;
+  border-radius: 10px;
+
+  /* Main text ubuntu */
+  font-size: 18px;
+  line-height: 21px;
+  text-align: center;
+  /* Azure */
+  color: #047ced;
+
+  float: right;
+  padding: auto;
+  margin: 41px 141px;
+  width: 150px;
+  height: 26px;
+}

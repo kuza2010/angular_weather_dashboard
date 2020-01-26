@@ -1,1 +1,10 @@
-/* You can add global styles to this file, and also import other style files */
+/* Set main backgrounf color #07072B */
+body {
+  background-color: #07072b;
+}
+
+html * {
+  font-family: Ubuntu !important;
+  font-style: normal;
+  font-weight: normal;
+}
