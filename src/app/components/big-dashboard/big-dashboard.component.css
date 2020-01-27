@@ -1,0 +1,61 @@
+.big-dashboard {
+  width: 370px;
+  height: 492px;
+  left: 475px;
+  top: 294px;
+  margin: auto;
+  text-align: center;
+
+  /* Brilliant Azure */
+  border: 3px solid #489ef9;
+  border-radius: 10px;
+}
+
+.description {
+  font-size: 64px;
+  margin-top: 50px;
+  /* Brilliant Azure */
+  color: #489ef9;
+  text-align: center;
+}
+
+.temperature {
+  font-size: 144px;
+  /* Brilliant Azure */
+  color: #489ef9;
+  text-shadow: -5px 5px 0px #171970;
+  text-align: center;
+  margin-top: 30px;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+.images {
+  width: 96px;
+  height: 96px;
+}
+
+.info {
+  font-size: 18px;
+  display: inline-block;
+  margin-top: 10px;
+  height: 96px;
+
+  /* Brilliant Azure */
+  color: #489ef9;
+}
+
+.additional-information {
+  margin-left: 30px;
+  text-align: left;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+img {
+  display: inline-block;
+  vertical-align: middle;
+}

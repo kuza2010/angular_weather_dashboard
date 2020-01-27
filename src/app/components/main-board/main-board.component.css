@@ -1,0 +1,13 @@
+.title {
+  text-align: center;
+  margin: auto;
+}
+
+h1 {
+  font-size: 96px;
+  line-height: 110px;
+
+  /* Brilliant Azure */
+  color: #489ef9;
+  text-shadow: -5px 5px 0px #171970;
+}
