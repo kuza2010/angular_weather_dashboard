@@ -7,6 +7,7 @@ import { HeaderComponent } from "./components/header/header.component";
 import { MainBoardComponent } from "./components/main-board/main-board.component";
 import { BigDashboardComponent } from "./components/big-dashboard/big-dashboard.component";
 import { MiniDashboardComponent } from './components/mini-dashboard/mini-dashboard.component';
+import { MediumDashboardComponent } from './components/medium-dashboard/medium-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { MiniDashboardComponent } from './components/mini-dashboard/mini-dashboa
     HeaderComponent,
     MainBoardComponent,
     BigDashboardComponent,
-    MiniDashboardComponent
+    MiniDashboardComponent,
+    MediumDashboardComponent
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],

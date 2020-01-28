@@ -20,8 +20,21 @@ h1 {
 .big {
   display: inline-block;
 }
-.mini {
-  display: inline-block;
+
+.inline {
+  position: relative;
   vertical-align: top;
-  margin-left: 77px;
+  display: inline-block;
+  height: 492px;
+}
+
+.mini {
+  vertical-align: top;
+  margin-left: 67px;
+}
+
+.medium {
+  margin-left: 100px;
+  position: absolute;
+  bottom: 0px;
 }

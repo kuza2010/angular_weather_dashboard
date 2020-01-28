@@ -3,7 +3,6 @@
   width: 100px;
   height: 150px;
   text-align: center;
-  display: inline-block;
 
   /* Brilliant Azure */
   border: 3px solid #489ef9;
@@ -15,22 +14,21 @@
 p {
   margin: 0;
   padding: 0;
-
   /* Brilliant Azure */
   color: #489ef9;
   text-align: center;
 }
 
 .day {
-  margin-top: 18px;
+  margin-top: 13px;
+}
+
+img {
+  width: 64px;
+  height: 64px;
+  margin-top: 9px;
 }
 
 .average-temperature {
   margin-top: 11px;
-}
-
-.images {
-  width: 64px;
-  height: 64px;
-  margin-top: 9px;
 }

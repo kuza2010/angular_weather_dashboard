@@ -1,0 +1,41 @@
+.hourly-forecats {
+  width: 510px;
+  height: 186px;
+
+  /* Brilliant Azure */
+  border: 3px solid #489ef9;
+  box-sizing: border-box;
+  border-radius: 10px;
+}
+
+.forecast {
+  display: inline-block;
+  width: 100px;
+  margin: 0 auto;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  font-weight: 300;
+  font-size: 24px;
+  line-height: 28px;
+
+  /* Brilliant Azure */
+  color: #489ef9;
+}
+
+.hour {
+  margin-top: 22px;
+}
+
+img {
+  width: 64px;
+  height: 64px;
+  margin-top: 7px;
+}
+
+.average-temperature {
+  margin-top: 5px;
+}
