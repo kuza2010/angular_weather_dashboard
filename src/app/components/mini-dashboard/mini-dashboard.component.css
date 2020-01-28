@@ -1,0 +1,33 @@
+.mini-dashoard {
+  width: 100px;
+  height: 150px;
+  text-align: center;
+
+  /* Brilliant Azure */
+  border: 3px solid #489ef9;
+  box-sizing: border-box;
+  border-radius: 10px;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+
+  /* Brilliant Azure */
+  color: #489ef9;
+  text-align: center;
+}
+
+.day {
+  margin-top: 18px;
+}
+
+.average-temperature {
+  margin-top: 11px;
+}
+
+.images {
+  width: 64px;
+  height: 64px;
+  margin-top: 9px;
+}
