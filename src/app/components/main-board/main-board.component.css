@@ -11,3 +11,17 @@ h1 {
   color: #489ef9;
   text-shadow: -5px 5px 0px #171970;
 }
+
+.dashboards {
+  text-align: center;
+  margin: auto;
+}
+
+.big {
+  display: inline-block;
+}
+.mini {
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 77px;
+}

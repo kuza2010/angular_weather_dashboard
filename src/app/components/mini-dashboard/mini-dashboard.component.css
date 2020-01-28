@@ -1,12 +1,15 @@
 .mini-dashoard {
+  display: inline-block;
   width: 100px;
   height: 150px;
   text-align: center;
+  display: inline-block;
 
   /* Brilliant Azure */
   border: 3px solid #489ef9;
   box-sizing: border-box;
   border-radius: 10px;
+  margin-left: 33px;
 }
 
 p {

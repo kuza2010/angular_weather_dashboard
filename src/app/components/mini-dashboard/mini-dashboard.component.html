@@ -1,7 +1,7 @@
 <div class="mini-dashboards">
   <!-- ngFor div -->
-  <div class="mini-dashoard">
-    <p class="day">Wednesday</p>
+  <div class="mini-dashoard" *ngFor="let item of days">
+    <p class="day">{{ item }}</p>
     <img src="../../../assets/iconmonstr-weather-8-64 (1).png" />
     <p class="average-temperature">15°/17°</p>
   </div>
