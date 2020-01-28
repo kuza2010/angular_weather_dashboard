@@ -1,13 +1,14 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
+import { HttpClientModule } from "@angular/common/http";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { HeaderComponent } from "./components/header/header.component";
 import { MainBoardComponent } from "./components/main-board/main-board.component";
 import { BigDashboardComponent } from "./components/big-dashboard/big-dashboard.component";
-import { MiniDashboardComponent } from './components/mini-dashboard/mini-dashboard.component';
-import { MediumDashboardComponent } from './components/medium-dashboard/medium-dashboard.component';
+import { MiniDashboardComponent } from "./components/mini-dashboard/mini-dashboard.component";
+import { MediumDashboardComponent } from "./components/medium-dashboard/medium-dashboard.component";
 
 @NgModule({
   declarations: [
@@ -18,7 +19,7 @@ import { MediumDashboardComponent } from './components/medium-dashboard/medium-d
     MiniDashboardComponent,
     MediumDashboardComponent
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent]
 })
