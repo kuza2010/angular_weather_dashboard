@@ -1,13 +1,17 @@
 <div class="big-dashboard">
-  <p class="description">{{ description }}</p>
-  <p class="temperature">{{ temperature }}°</p>
+  <p class="description">{{ weatherInfo.description | slice: 0:8 }}</p>
+  <p class="temperature">{{ weatherInfo.currentTemperature }}°</p>
   <div class="info">
-    <img src="../../../assets/iconmonstr-weather-1-96.png" />
+    <img src="{{ weatherInfo.img }}" />
     <div class="additional-information">
-      <p class="average-temperature">15°/17°</p>
-      <p class="precipitation">Precipitation: 100%</p>
-      <p class="hymidity">Humidity: {{ humidity }}%</p>
-      <p class="wind">Wind: {{ windSpeed }} m/s</p>
+      <p class="average-temperature">
+        {{ weatherInfo.minTemperature }}°/{{ weatherInfo.maxTemperature }}°
+      </p>
+      <p class="feels-like">
+        Feels like: {{ weatherInfo.feelsLikeTemperature }}°
+      </p>
+      <p class="hymidity">Humidity: {{ weatherInfo.humidity }}%</p>
+      <p class="wind">Wind: {{ weatherInfo.windSpeed }} m/s</p>
     </div>
   </div>
 </div>
