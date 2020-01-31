@@ -26,7 +26,7 @@ export class BigDashboardComponent implements OnInit {
       })
       .catch(reason => {
         //TODO: popup
-        console.log('Oops...')
+        alert("Something went wrong! Please, relaod page :)")
       });
   }
 }
