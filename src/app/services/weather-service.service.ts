@@ -32,13 +32,14 @@ export class WeatherServiceService {
   }
 
   /**
-   * Return the weather for specified cityId on week.
-   * If the value is not specify will be use default value 52055
+   * Return the weather for specified cityId on the next 6 days with
+   * 3 hour period.
+   * If the value <p>cityId</p>is not specify will be use default value 52055
    * for NN city. 
    * 
    * @param cityId - cityId
    */
-  getWeatherForWeek(cityId: string = this.defaultCityId){
+  getWeatherForWeek(cityId: string = this.defaultCityId) {
     let parameters: HttpParams = new HttpParams();
     parameters = parameters.set("id", cityId);
     parameters = parameters.append("units", this.units);

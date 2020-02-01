@@ -12,10 +12,9 @@ import { Resolution } from '../../services/image-utils'
 export class MiniDashboardComponent implements OnInit {
 
   public readonly days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-  readonly maxDays = 4;
+  readonly numOfDays = 4;
 
-  //The weather info for next four days
-  weekWeatherInfo: Array<MiniDashboardModel> = new Array(0);
+  weekWeatherInfo: Array<MiniDashboardModel> = [];
 
   constructor(private weatherServise: WeatherServiceService) { }
 
@@ -24,7 +23,7 @@ export class MiniDashboardComponent implements OnInit {
       .then(weather => { this.fillWeather(weather.list) })
       //TODO: popup
       .catch(reason => {
-        console.log(reason);
+        console.exception("Exception: " + reason);
         alert("Something went wrong! Please, relaod page :)");
       });
   }
@@ -33,7 +32,7 @@ export class MiniDashboardComponent implements OnInit {
   fillWeather(listWeather: List[]) {
     listWeather.forEach(element => {
 
-      if (this.weekWeatherInfo.length < this.maxDays) {
+      if (this.weekWeatherInfo.length < this.numOfDays) {
         let today = this.days[new Date(Date.now()).getDay()];                // current day
         let elementDay = this.days[new Date(element.dt * 1000).getDay()];    // current element day
 

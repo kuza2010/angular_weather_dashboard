@@ -2,9 +2,9 @@
   <!-- ngFor div 
   <div class="forecast" *ngFor="let item of hour">
     <p class="hour">{{ item }}</p>-->
-  <div class="forecast" *ngFor="let item of hour">
-    <p class="hour">{{ item }}</p>
-    <img src="../../../assets/iconmonstr-weather-8-64 (1).png" />
-    <p class="temperature">15°</p>
+  <div class="forecast" *ngFor="let item of weatherInfo">
+    <p class="hour">{{ item.time | date: "HH:mm" }}</p>
+    <img src="{{ item.image }}" />
+    <p class="temperature">{{ item.averageTemperature }}°</p>
   </div>
 </div>
