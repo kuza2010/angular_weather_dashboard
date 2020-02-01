@@ -21,7 +21,6 @@ export class MiniDashboardComponent implements OnInit {
   ngOnInit() {
     this.weatherServise.getWeatherForWeek()
       .then(weather => { this.fillWeather(weather.list) })
-      //TODO: popup
       .catch(reason => {
         console.exception("Exception: " + reason);
         alert("Something went wrong! Please, relaod page :)");

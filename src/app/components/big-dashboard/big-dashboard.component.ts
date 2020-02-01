@@ -28,7 +28,7 @@ export class BigDashboardComponent implements OnInit {
           weather.weather[0].id)
       })
       .catch(reason => {
-        //TODO: popup
+        console.exception("Exception: " + reason);
         alert("Something went wrong! Please, relaod page :)")
       });
   }
