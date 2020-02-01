@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { WeatherServiceService } from '../../services/weather-service.service'
 
+import { ImageUtils } from '../../services/image-utils'
+import { Resolution } from '../../services/image-utils'
 
 @Component({
   selector: "app-mini-dashboard",
@@ -9,21 +11,61 @@ import { WeatherServiceService } from '../../services/weather-service.service'
 })
 export class MiniDashboardComponent implements OnInit {
 
-  public days: string[] = ["Wednesday", "Thursday", "Friday", "Saturday"];
+  public readonly days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  readonly maxDays = 4;
+
+  //The weather info for next four days
+  weekWeatherInfo: Array<MiniDashboardModel> = new Array(0);
 
   constructor(private weatherServise: WeatherServiceService) { }
 
   ngOnInit() {
     this.weatherServise.getWeatherForWeek()
-      .then(weather => {
-        weather.list.forEach(element => {
-          console.log(element.dt);
-          console.log("date:" + new Date(element.dt));
-        })
-      })
+      .then(weather => { this.fillWeather(weather.list) })
+      //TODO: popup
       .catch(reason => {
-        //TODO: popup
-        alert("Something went wrong! Please, relaod page :)")
+        console.log(reason);
+        alert("Something went wrong! Please, relaod page :)");
       });
+  }
+
+
+  fillWeather(listWeather: List[]) {
+    listWeather.forEach(element => {
+
+      if (this.weekWeatherInfo.length < this.maxDays) {
+        let today = this.days[new Date(Date.now()).getDay()];                // current day
+        let elementDay = this.days[new Date(element.dt * 1000).getDay()];    // current element day
+
+        // we must get the weather from next day
+        if (today != elementDay) {
+          let last = this.weekWeatherInfo.slice(-1)[0];                      // get last added day
+
+          if (last === undefined || last.dayName != elementDay)
+            this.weekWeatherInfo.push(new MiniDashboardModel(
+              elementDay, element.weather[0].id,
+              element.main.temp_min, element.main.temp_max));
+        }
+      }
+    });
+  }
+}
+
+
+
+class MiniDashboardModel {
+  public dateString: string;
+  public dayName: string;
+  public image: string;
+  public minTemperature: number;
+  public maxTemperature: number;
+
+  constructor(dayName: string, weatherConditionCode: number,
+    minTemperature: number, maxTemperature: number) {
+
+    this.dayName = dayName;
+    this.image = ImageUtils.getImagePath(weatherConditionCode, Resolution.Large);
+    this.minTemperature = Math.round(minTemperature);
+    this.maxTemperature = Math.round(maxTemperature);
   }
 }

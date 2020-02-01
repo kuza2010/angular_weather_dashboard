@@ -20,7 +20,7 @@ export class WeatherServiceService {
    *
    * @param cityId - cityId
    */
-  getWeatherForToday(cityId: string = this.defaultCityId) {
+  getWeatherForToday(cityId: string = this.defaultCityId): Promise<TodayWeather> {
     let parameters: HttpParams = new HttpParams();
     parameters = parameters.set("id", cityId);
     parameters = parameters.append("units", this.units);
@@ -38,14 +38,14 @@ export class WeatherServiceService {
    * 
    * @param cityId - cityId
    */
-  getWeatherForWeek(cityId: string = this.defaultCityId) {
+  getWeatherForWeek(cityId: string = this.defaultCityId){
     let parameters: HttpParams = new HttpParams();
     parameters = parameters.set("id", cityId);
     parameters = parameters.append("units", this.units);
     parameters = parameters.append("appid", this.appid);
 
     return this.http
-      .get<TodayWeather>(this.baseUrl + "/forecast", { params: parameters })
+      .get<WeekWeather>(this.baseUrl + "/forecast", { params: parameters })
       .toPromise();
   }
 }
