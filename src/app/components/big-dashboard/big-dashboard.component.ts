@@ -42,6 +42,7 @@ class BigDashboardModel {
   public maxTemperature: number;
   public currentTemperature: number;
   public feelsLikeTemperature: number;
+  public windSpeed: number;
 
   constructor(currentTemperature: number, feelsLikeTemperature: number,
     maxTemperature: number, minTemperature: number,
@@ -53,6 +54,7 @@ class BigDashboardModel {
     this.maxTemperature = Math.round(maxTemperature);
     this.minTemperature = Math.round(minTemperature);
     this.feelsLikeTemperature = Math.round(feelsLikeTemperature);
+    this.windSpeed = Math.round(windSpeed);
   }
 
 }

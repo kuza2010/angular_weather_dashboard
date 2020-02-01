@@ -43,16 +43,14 @@ export class MediumDashboardComponent implements OnInit {
 
 
 class MediumDashboardModel {
-  public time: Date;
   public image: string;
   public averageTemperature: number;
 
-  constructor(time: Date, weatherConditionCode: number,
+  constructor(public time: Date, weatherConditionCode: number,
     minTemperature: number, maxTemperature: number) {
 
     // average
     this.averageTemperature = Math.round(Math.abs(minTemperature) + ((maxTemperature) - Math.abs(minTemperature)) / 2);
-    this.time = time;
     this.image = ImageUtils.getImagePath(weatherConditionCode, Resolution.Large);
   }
 }
