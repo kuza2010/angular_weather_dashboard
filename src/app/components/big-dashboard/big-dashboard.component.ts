@@ -18,13 +18,13 @@ export class BigDashboardComponent implements OnInit {
   ngOnInit() {
     this.weatherServise.getWeatherForToday()
       .then(weather => {
-        this.weatherInfo = new BigDashboardModel(Math.round(weather.main.temp),
-          Math.round(weather.main.feels_like),
-          Math.round(weather.main.temp_max),
-          Math.round(weather.main.temp_min),
+        this.weatherInfo = new BigDashboardModel(weather.main.temp,
+          weather.main.feels_like,
+          weather.main.temp_max,
+          weather.main.temp_min,
           weather.weather[0].main,
           weather.main.humidity,
-          Math.round(weather.wind.speed),
+          weather.wind.speed,
           weather.weather[0].id)
       })
       .catch(reason => {
@@ -38,17 +38,21 @@ export class BigDashboardComponent implements OnInit {
 class BigDashboardModel {
 
   public img: string;
+  public minTemperature: number;
+  public maxTemperature: number;
+  public currentTemperature: number;
+  public feelsLikeTemperature: number;
 
-  constructor(public currentTemperature: number,
-    public feelsLikeTemperature: number,
-    public maxTemperature: number,
-    public minTemperature: number,
-    public description: string,
-    public humidity: number,
-    public windSpeed: number,
-    weatherConditionCode: number) {
+  constructor(currentTemperature: number, feelsLikeTemperature: number,
+    maxTemperature: number, minTemperature: number,
+    public description: string, public humidity: number,
+    windSpeed: number, weatherConditionCode: number) {
 
     this.img = ImageUtils.getImagePath(weatherConditionCode, Resolution.Large);
+    this.currentTemperature = Math.round(currentTemperature);
+    this.maxTemperature = Math.round(maxTemperature);
+    this.minTemperature = Math.round(minTemperature);
+    this.feelsLikeTemperature = Math.round(feelsLikeTemperature);
   }
 
 }
