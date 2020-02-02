@@ -13,6 +13,9 @@ import { MiniDashboardComponent } from "./components/mini-dashboard/mini-dashboa
 import { MediumDashboardComponent } from "./components/medium-dashboard/medium-dashboard.component";
 import { SettingsComponent } from "./components/settings/settings.component";
 
+import { NgxSelectModule } from 'ngx-select-ex';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 const appRoutes: Routes = [
   { path: '', component: MainBoardComponent },
@@ -30,10 +33,13 @@ const appRoutes: Routes = [
     SettingsComponent
   ],
   imports: [
+    FormsModule,
+    ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    NgxSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

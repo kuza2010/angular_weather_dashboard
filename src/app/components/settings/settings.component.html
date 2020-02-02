@@ -7,10 +7,22 @@
         <label>
           For real boys
           <input type="checkbox" />
-          <span class="lever"></span>
-          White
+          <span class="lever"></span>White
         </label>
       </div>
     </div>
+  </div>
+
+  <div class="row">
+    <ngx-select
+      [items]="citiesList"
+      [formControl]="selectControl"
+      [allowClear]="true"
+      placeholder="Your city is:"
+      optionValueField="optionId"
+      optionTextField="optionTitle"
+    >
+      Hello!
+    </ngx-select>
   </div>
 </div>
