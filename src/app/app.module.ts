@@ -2,6 +2,8 @@ import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { HttpClientModule } from "@angular/common/http";
 
+import { Routes, RouterModule } from "@angular/router";
+
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { HeaderComponent } from "./components/header/header.component";
@@ -9,6 +11,13 @@ import { MainBoardComponent } from "./components/main-board/main-board.component
 import { BigDashboardComponent } from "./components/big-dashboard/big-dashboard.component";
 import { MiniDashboardComponent } from "./components/mini-dashboard/mini-dashboard.component";
 import { MediumDashboardComponent } from "./components/medium-dashboard/medium-dashboard.component";
+import { SettingsComponent } from "./components/settings/settings.component";
+
+
+const appRoutes: Routes = [
+  { path: '', component: MainBoardComponent },
+  { path: 'settings', component: SettingsComponent }
+]
 
 @NgModule({
   declarations: [
@@ -17,10 +26,16 @@ import { MediumDashboardComponent } from "./components/medium-dashboard/medium-d
     MainBoardComponent,
     BigDashboardComponent,
     MiniDashboardComponent,
-    MediumDashboardComponent
+    MediumDashboardComponent,
+    SettingsComponent
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    RouterModule.forRoot(appRoutes)
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
