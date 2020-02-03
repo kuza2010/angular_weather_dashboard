@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { AppCityService } from 'src/app/services/city-service';
-import { CityModel } from 'src/app/models/city-model';
 
 
 @Component({
@@ -11,23 +10,33 @@ import { CityModel } from 'src/app/models/city-model';
 })
 export class SettingsComponent implements OnInit {
 
-  public selectControl = new FormControl();
+  //Configure ngx-select-dropdown search
+  public ngx_select_config = {
+    search: true,
+    limitTo: 5,
+    placeholder: 'Your city:',
+    noResultsFound: 'No city found! From Mars?',
+    clearOnSelection: true
+  };
+
+  public singleSelect: string;
   public citiesList: String[] = new Array(0);
 
   constructor(private cityService: AppCityService) { }
 
   ngOnInit(): void {
     this.cityService.getCityJSON()
-      .then(cities => cities.forEach(city => this.citiesList.push(city["name:"])))
-      .catch(reason => {
-        console.error("Error during fetch city json: " + reason)
-        alert("Please reload page :)")
-      });
+      .then(cities => {
+        cities.forEach(city => {
+          if (city["name:"] && city["name:"].trim().length > 1)
+            this.citiesList.push(city["name:"])
+        })
+        this.citiesList = [...this.citiesList];
+      })
+      .catch(reason => { alert("Please reload page :)") });
+  }
 
-    this.selectControl.valueChanges
-      .subscribe((city: string) => {
-        const obj = this.citiesList.find(item => item === city);
-        console.log('subscriptionTypeId', city, obj);
-      });
+  changeCity() {
+    console.log(this.singleSelect);
   }
 }
