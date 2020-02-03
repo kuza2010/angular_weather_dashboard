@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { AppCityService } from 'src/app/services/city-service';
 import { CityModel } from 'src/app/models/city-model';
-import { element } from 'protractor';
 
 
 @Component({
@@ -19,15 +18,7 @@ export class SettingsComponent implements OnInit {
 
   ngOnInit(): void {
     this.cityService.getCityJSON()
-      .then(cities => {
-        console.log(`successful fetch ${cities.length}`);
-        cities.forEach(element => {
-          if (this.citiesList.length === undefined || this.citiesList.length < 10) {
-            console.log("add");
-            this.citiesList.push(element.name);
-          }
-        })
-      })
+      .then(cities => cities.forEach(city => this.citiesList.push(city["name:"])))
       .catch(reason => {
         console.error("Error during fetch city json: " + reason)
         alert("Please reload page :)")
