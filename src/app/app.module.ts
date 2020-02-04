@@ -17,6 +17,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { SelectDropDownModule } from 'ngx-select-dropdown'
 
+import { CookieService } from 'ngx-cookie-service'
+
 
 const appRoutes: Routes = [
   { path: '', component: MainBoardComponent },
@@ -42,7 +44,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     SelectDropDownModule
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

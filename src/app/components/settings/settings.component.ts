@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
 import { AppCityService } from 'src/app/services/city-service';
+import { CookieService } from 'ngx-cookie-service';
+import { CityModel } from 'src/app/models/city-model';
+import { CookieHelperService, CookieKey } from 'src/app/services/cookie-helper.service';
 
 
 @Component({
@@ -12,31 +14,39 @@ export class SettingsComponent implements OnInit {
 
   //Configure ngx-select-dropdown search
   public ngx_select_config = {
+    displayKey: 'name:',
     search: true,
     limitTo: 5,
     placeholder: 'Your city:',
-    noResultsFound: 'No city found! From Mars?',
+    noResultsFound: 'Are you from Mars?',
     clearOnSelection: true
   };
 
-  public singleSelect: string;
-  public citiesList: String[] = new Array(0);
+  public singleSelect: CityModel;
+  public citiesList: CityModel[] = [];
 
-  constructor(private cityService: AppCityService) { }
+  constructor(private cityService: AppCityService,
+    private cookieService: CookieHelperService) { }
 
   ngOnInit(): void {
+    // need filter because json maight contain some invalid data
     this.cityService.getCityJSON()
-      .then(cities => {
-        cities.forEach(city => {
-          if (city["name:"] && city["name:"].trim().length > 1)
-            this.citiesList.push(city["name:"])
-        })
-        this.citiesList = [...this.citiesList];
-      })
+      .then(citiesFromJson => this.citiesList = [...citiesFromJson.filter(city => this.isValid(city))])
       .catch(reason => { alert("Please reload page :)") });
   }
 
+  private isValid(city: CityModel) {
+    return city["name:"] && city["name:"].trim().length > 1;
+  }
+
   changeCity() {
-    console.log(this.singleSelect);
+    if (this.singleSelect) {
+      console.log(`update cookies...`);
+      this.cookieService.set(CookieKey.cityName, this.singleSelect["name:"]);
+      this.cookieService.set(CookieKey.cityId, this.singleSelect.id.toString());
+    } else {
+      console.log("clear cookies...");
+      this.cookieService.clear(CookieKey.cityName, CookieKey.cityId);
+    }
   }
 }
