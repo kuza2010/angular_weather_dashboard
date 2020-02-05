@@ -12,17 +12,19 @@ import { BigDashboardComponent } from "./components/big-dashboard/big-dashboard.
 import { MiniDashboardComponent } from "./components/mini-dashboard/mini-dashboard.component";
 import { MediumDashboardComponent } from "./components/medium-dashboard/medium-dashboard.component";
 import { SettingsComponent } from "./components/settings/settings.component";
+import { NotFoundComponent } from './components/not-found/not-found.component'
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { SelectDropDownModule } from 'ngx-select-dropdown'
 
-import { CookieService } from 'ngx-cookie-service'
+import { CookieService } from 'ngx-cookie-service';
 
 
 const appRoutes: Routes = [
   { path: '', component: MainBoardComponent },
-  { path: 'settings', component: SettingsComponent }
+  { path: 'settings', component: SettingsComponent },
+  { path: '**', component: NotFoundComponent }
 ]
 
 @NgModule({
@@ -33,7 +35,8 @@ const appRoutes: Routes = [
     BigDashboardComponent,
     MiniDashboardComponent,
     MediumDashboardComponent,
-    SettingsComponent
+    SettingsComponent,
+    NotFoundComponent
   ],
   imports: [
     FormsModule,

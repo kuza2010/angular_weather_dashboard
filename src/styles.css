@@ -10,7 +10,7 @@ html * {
 }
 
 /* Swith */
-.switch label input[type=checkbox]:checked + .lever {
+.switch label input[type="checkbox"]:checked + .lever {
   background-color: #171970 !important;
 }
 
@@ -18,16 +18,15 @@ html * {
   background-color: #171970 !important;
 }
 
-.switch label input[type=checkbox]:checked + .lever:after{
-  background-color:#E2EAFF !important;
+.switch label input[type="checkbox"]:checked + .lever:after {
+  background-color: #e2eaff !important;
 }
 
-
 /* Customize ngx-select-dropdown */
-.ngx-dropdown-button{
+.ngx-dropdown-button {
   /* Brilliant Azure */
   background: #489ef9 !important;
   /* Midnight blue */
   color: 171970 !important;
-  border: 0px solid #E2EAFF !important;
+  border: 0px solid #e2eaff !important;
 }
