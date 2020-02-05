@@ -3,6 +3,7 @@ import { WeatherServiceService } from '../../services/weather-service.service'
 
 import { ImageUtils } from '../../services/image-utils'
 import { Resolution } from '../../services/image-utils'
+import { CookieHelperService, CookieKey } from 'src/app/services/cookie-helper.service';
 
 @Component({
   selector: "app-mini-dashboard",
@@ -16,10 +17,11 @@ export class MiniDashboardComponent implements OnInit {
 
   weekWeatherInfo: Array<MiniDashboardModel> = [];
 
-  constructor(private weatherServise: WeatherServiceService) { }
+  constructor(private weatherServise: WeatherServiceService,
+    private cookieService: CookieHelperService) { }
 
   ngOnInit() {
-    this.weatherServise.getWeatherForWeek()
+    this.weatherServise.getWeatherForWeek(this.getCity())
       .then(weather => { this.fillWeather(weather.list) })
       .catch(reason => {
         console.exception("Exception: " + reason);
@@ -28,7 +30,7 @@ export class MiniDashboardComponent implements OnInit {
   }
 
 
-  fillWeather(listWeather: List[]) {
+  private fillWeather(listWeather: List[]) {
     listWeather.forEach(element => {
 
       if (this.weekWeatherInfo.length < this.numOfDays) {
@@ -46,6 +48,12 @@ export class MiniDashboardComponent implements OnInit {
         }
       }
     });
+  }
+
+  private getCity() {
+    if (this.cookieService.check(CookieKey.cityId))
+      return this.cookieService.get(CookieKey.cityId);
+    return undefined;
   }
 }
 

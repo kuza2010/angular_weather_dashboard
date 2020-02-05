@@ -35,6 +35,23 @@ export class CookieHelperService {
     }
   }
 
+  public check(key: CookieKey) {
+    return this.cookieService.check(key);
+  }
+
+  public checkAll(...key: CookieKey[]) {
+    if (key && key != undefined && key.length > 0) {
+      let status = false;
+      for (let _key of key) {
+        status = this.cookieService.check(_key);
+        if (!status) return false;
+      }
+      return true;
+    }
+    console.warn(`checkAll: invalid cookies: ${key}`)
+    return false
+  }
+
 }
 
 export enum CookieKey {

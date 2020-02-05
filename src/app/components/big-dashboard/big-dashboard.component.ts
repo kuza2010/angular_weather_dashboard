@@ -3,6 +3,7 @@ import { WeatherServiceService } from '../../services/weather-service.service'
 
 import { ImageUtils } from '../../services/image-utils'
 import { Resolution } from '../../services/image-utils'
+import { CookieHelperService, CookieKey } from 'src/app/services/cookie-helper.service';
 
 @Component({
   selector: 'app-big-dashboard',
@@ -13,10 +14,11 @@ export class BigDashboardComponent implements OnInit {
 
   weatherInfo: BigDashboardModel;
 
-  constructor(private weatherServise: WeatherServiceService) { }
+  constructor(private weatherServise: WeatherServiceService,
+    private cookieService: CookieHelperService) { }
 
   ngOnInit() {
-    this.weatherServise.getWeatherForToday()
+    this.weatherServise.getWeatherForToday(this.getCity())
       .then(weather => {
         this.weatherInfo = new BigDashboardModel(weather.main.temp,
           weather.main.feels_like,
@@ -31,6 +33,12 @@ export class BigDashboardComponent implements OnInit {
         console.exception("Exception: " + reason);
         alert("Something went wrong! Please, relaod page :)")
       });
+  }
+
+  private getCity() {
+    if (this.cookieService.check(CookieKey.cityId))
+      return this.cookieService.get(CookieKey.cityId);
+    return undefined;
   }
 }
 

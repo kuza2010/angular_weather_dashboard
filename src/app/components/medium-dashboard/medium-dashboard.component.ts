@@ -3,6 +3,7 @@ import { WeatherServiceService } from '../../services/weather-service.service'
 
 import { ImageUtils } from '../../services/image-utils'
 import { Resolution } from '../../services/image-utils'
+import { CookieHelperService, CookieKey } from 'src/app/services/cookie-helper.service';
 
 @Component({
   selector: "app-medium-dashboard",
@@ -15,12 +16,13 @@ export class MediumDashboardComponent implements OnInit {
 
   weatherInfo: Array<MediumDashboardModel> = [];
 
-  constructor(private weatherServise: WeatherServiceService) { }
+  constructor(private weatherServise: WeatherServiceService,
+    private cookieService: CookieHelperService) { }
 
   ngOnInit(): void {
     // we use weatherServise.getWeatherForWeek(), because api support only
     // this method for free tiere
-    this.weatherServise.getWeatherForWeek()
+    this.weatherServise.getWeatherForWeek(this.getCity())
       .then(weather => { this.fillHourlyWeather(weather.list) })
       .catch(reason => {
         console.exception("Exception: " + reason);
@@ -29,7 +31,7 @@ export class MediumDashboardComponent implements OnInit {
   }
 
 
-  fillHourlyWeather(list: List[]) {
+  private fillHourlyWeather(list: List[]) {
     list.forEach(element => {
 
       if (this.weatherInfo.length < this.numOf)
@@ -38,6 +40,12 @@ export class MediumDashboardComponent implements OnInit {
           element.main.temp_min, element.main.temp_max))
 
     })
+  }
+
+  private getCity() {
+    if (this.cookieService.check(CookieKey.cityId))
+      return this.cookieService.get(CookieKey.cityId);
+    return undefined;
   }
 }
 

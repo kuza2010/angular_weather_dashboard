@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AppCityService } from 'src/app/services/city-service';
-import { CookieService } from 'ngx-cookie-service';
 import { CityModel } from 'src/app/models/city-model';
 import { CookieHelperService, CookieKey } from 'src/app/services/cookie-helper.service';
 
@@ -18,6 +17,7 @@ export class SettingsComponent implements OnInit {
     search: true,
     limitTo: 5,
     placeholder: 'Your city:',
+    moreText: 'moreText',
     noResultsFound: 'Are you from Mars?',
     clearOnSelection: true
   };
@@ -33,13 +33,21 @@ export class SettingsComponent implements OnInit {
     this.cityService.getCityJSON()
       .then(citiesFromJson => this.citiesList = [...citiesFromJson.filter(city => this.isValid(city))])
       .catch(reason => { alert("Please reload page :)") });
+
+    if (this.cookieService.checkAll(CookieKey.cityId, CookieKey.cityName)) {
+      const selected: CityModel = {
+        id: parseInt(this.cookieService.get(CookieKey.cityId)),
+        'name:': this.cookieService.get(CookieKey.cityName)
+      };
+      this.singleSelect = selected;
+    }
   }
 
   private isValid(city: CityModel) {
     return city["name:"] && city["name:"].trim().length > 1;
   }
 
-  changeCity() {
+  onCityChanged() {
     if (this.singleSelect) {
       console.log(`update cookies...`);
       this.cookieService.set(CookieKey.cityName, this.singleSelect["name:"]);
