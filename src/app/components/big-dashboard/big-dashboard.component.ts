@@ -30,7 +30,7 @@ export class BigDashboardComponent implements OnInit {
           weather.weather[0].id)
       })
       .catch(reason => {
-        console.exception("Exception: " + reason);
+        console.error("Exception: " + reason);
         alert("Something went wrong! Please, relaod page :)")
       });
   }

@@ -24,7 +24,7 @@ export class MiniDashboardComponent implements OnInit {
     this.weatherServise.getWeatherForWeek(this.getCity())
       .then(weather => { this.fillWeather(weather.list) })
       .catch(reason => {
-        console.exception("Exception: " + reason);
+        console.error("Exception: " + reason);
         alert("Something went wrong! Please, relaod page :)");
       });
   }

@@ -8,6 +8,7 @@ import { CookieHelperService, CookieKey } from 'src/app/services/cookie-helper.s
 })
 export class MainBoardComponent implements OnInit {
 
+  public readonly DEFAULT_CITY = 'Nizhniy Novgorod';
   public city: string;
 
   constructor(private cookieService: CookieHelperService) { }
@@ -15,8 +16,10 @@ export class MainBoardComponent implements OnInit {
   ngOnInit() {
     if (this.cookieService.check(CookieKey.cityName))
       this.city = this.cookieService.get(CookieKey.cityName);
-    else
+    else {
+      console.warn(`Use default city - ${this.DEFAULT_CITY}`)
       this.city = 'Nizhniy Novgorod';
+    }
   }
 
 }
