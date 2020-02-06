@@ -3,12 +3,6 @@ body {
   background-color: #07072b;
 }
 
-html * {
-  font-family: "Ubuntu";
-  font-style: normal;
-  font-weight: normal;
-}
-
 /* Swith */
 .switch label input[type="checkbox"]:checked + .lever {
   background-color: #171970 !important;
