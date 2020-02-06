@@ -32,14 +32,13 @@ export class SettingsComponent implements OnInit {
     // need filter because json maight contain some invalid data
     this.cityService.getCityJSON()
       .then(citiesFromJson => this.citiesList = [...citiesFromJson.filter(city => this.isValid(city))])
-      .catch(reason => { alert("Please reload page :)") });
+      .catch(reason => { alert("Something went wrong! Please, relaod page :)") });
 
     if (this.cookieService.checkAll(CookieKey.cityId, CookieKey.cityName)) {
-      const selected: CityModel = {
+      this.singleSelect = {
         id: parseInt(this.cookieService.get(CookieKey.cityId)),
         'name:': this.cookieService.get(CookieKey.cityName)
       };
-      this.singleSelect = selected;
     }
   }
 
@@ -48,7 +47,7 @@ export class SettingsComponent implements OnInit {
   }
 
   onCityChanged() {
-    if (this.singleSelect) {
+    if (this.singleSelect && this.singleSelect != undefined) {
       console.log(`update cookies...`);
       this.cookieService.set(CookieKey.cityName, this.singleSelect["name:"]);
       this.cookieService.set(CookieKey.cityId, this.singleSelect.id.toString());

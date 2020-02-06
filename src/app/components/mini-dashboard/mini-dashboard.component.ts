@@ -22,15 +22,14 @@ export class MiniDashboardComponent implements OnInit {
 
   ngOnInit() {
     this.weatherServise.getWeatherForWeek(this.getCity())
-      .then(weather => { this.fillWeather(weather.list) })
+      .then(weather => { this.fillMiniDashboards(weather.list) })
       .catch(reason => {
         console.error("Exception: " + reason);
         alert("Something went wrong! Please, relaod page :)");
       });
   }
 
-
-  private fillWeather(listWeather: List[]) {
+  private fillMiniDashboards(listWeather: List[]) {
     listWeather.forEach(element => {
 
       if (this.weekWeatherInfo.length < this.numOfDays) {

@@ -29,10 +29,7 @@ export class BigDashboardComponent implements OnInit {
           weather.wind.speed,
           weather.weather[0].id)
       })
-      .catch(reason => {
-        console.error("Exception: " + reason);
-        alert("Something went wrong! Please, relaod page :)")
-      });
+      .catch(reason => { alert("Something went wrong! Please, relaod page :)") });
   }
 
   private getCity() {

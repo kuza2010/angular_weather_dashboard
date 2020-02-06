@@ -8,6 +8,7 @@ import { CookieHelperService, CookieKey } from 'src/app/services/cookie-helper.s
 })
 export class MainBoardComponent implements OnInit {
 
+  // Defolt value
   public readonly DEFAULT_CITY = 'Nizhniy Novgorod';
   public city: string;
 
@@ -17,7 +18,7 @@ export class MainBoardComponent implements OnInit {
     if (this.cookieService.check(CookieKey.cityName))
       this.city = this.cookieService.get(CookieKey.cityName);
     else {
-      console.warn(`Use default city - ${this.DEFAULT_CITY}`)
+      console.warn(`Will use default city - ${this.DEFAULT_CITY}`)
       this.city = 'Nizhniy Novgorod';
     }
   }

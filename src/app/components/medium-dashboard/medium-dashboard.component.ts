@@ -12,7 +12,7 @@ import { CookieHelperService, CookieKey } from 'src/app/services/cookie-helper.s
 })
 export class MediumDashboardComponent implements OnInit {
 
-  readonly numOf = 5;
+  readonly numOfDays = 5;
 
   weatherInfo: Array<MediumDashboardModel> = [];
 
@@ -24,17 +24,13 @@ export class MediumDashboardComponent implements OnInit {
     // this method for free tiere
     this.weatherServise.getWeatherForWeek(this.getCity())
       .then(weather => { this.fillHourlyWeather(weather.list) })
-      .catch(reason => {
-        console.error("Exception: " + reason);
-        alert("Something went wrong! Please, relaod page :)");
-      })
+      .catch(reason => { alert("Something went wrong! Please, relaod page :)") })
   }
-
 
   private fillHourlyWeather(list: List[]) {
     list.forEach(element => {
 
-      if (this.weatherInfo.length < this.numOf)
+      if (this.weatherInfo.length < this.numOfDays)
         this.weatherInfo.push(new MediumDashboardModel(
           new Date(element.dt * 1000), element.weather[0].id,
           element.main.temp_min, element.main.temp_max))
